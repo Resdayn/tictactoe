@@ -18,6 +18,7 @@ function generateBoard() {
         let newSquare = document.createElement('div');
         newSquare.id = `square-${index}`;
         newSquare.innerText = square;
+        newSquare.classList.add("square");
         
         let board = document.querySelector("#board");
         board.append(newSquare);
