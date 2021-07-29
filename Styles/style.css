@@ -47,4 +47,14 @@ table {
 	border-spacing: 0;
 }
 
-
+#board {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-areas: 
+	"square1 square2 square3"
+	"square4 square5 square6"
+	"square7 square8 square9";
+	justify-items: center;
+	align-items: center;
+}
