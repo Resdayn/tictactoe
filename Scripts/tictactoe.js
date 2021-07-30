@@ -81,6 +81,25 @@ const gameBoard = (() => {
         
     }
 
+    const checkWinner = (mark) => {
+        // Returns true if any of the combinations is matched for the selected mark
+
+        if (gameBoard.getCurrentUser() === 'player1'){
+            mark = 'X'
+        } else {mark = 'O'}
+
+        if (board.getBoard()[0] === mark && board.getBoard()[1] === mark && board.getBoard()[2] === mark ||
+        board.getBoard()[3] === mark && board.getBoard()[4] === mark && board.getBoard()[5] === mark ||
+        board.getBoard()[6] === mark && board.getBoard()[7] === mark && board.getBoard()[8] === mark ||
+        board.getBoard()[0] === mark && board.getBoard()[3] === mark && board.getBoard()[6] === mark ||
+        board.getBoard()[1] === mark && board.getBoard()[4] === mark && board.getBoard()[7] === mark ||
+        board.getBoard()[2] === mark && board.getBoard()[5] === mark && board.getBoard()[8] === mark ||
+        board.getBoard()[0] === mark && board.getBoard()[4] === mark && board.getBoard()[8] === mark ||
+        board.getBoard()[2] === mark && board.getBoard()[4] === mark && board.getBoard()[6] === mark){
+            return true
+        }
+    }
+
     return {
         getBoard,
         getSquares,
@@ -88,7 +107,8 @@ const gameBoard = (() => {
         cleanBoard,
         markSquare,
         getCurrentUser,
-        swapCurrentUser
+        swapCurrentUser,
+        checkWinner
     }
 
 })();
