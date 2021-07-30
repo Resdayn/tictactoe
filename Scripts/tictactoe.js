@@ -13,10 +13,14 @@ const gameBoard = (() => {
     const getCurrentUser = () => {return _currentUser}
 
     let swapCurrentUser = () => {
+        let displayScreen = document.querySelector("#display-screen");
+
         if (_currentUser === 'player1'){
             _currentUser = 'player2'
+            displayScreen.innerText = 'Player 2 plays now!'
         } else if (_currentUser === 'player2'){
             _currentUser = 'player1'
+            displayScreen.innerText = 'Player 1 plays now!'
         }
     }
     
@@ -84,8 +88,7 @@ const gameBoard = (() => {
         cleanBoard,
         markSquare,
         getCurrentUser,
-        swapCurrentUser,
-        _currentUser
+        swapCurrentUser
     }
 
 })();

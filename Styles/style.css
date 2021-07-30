@@ -49,13 +49,22 @@ table {
 
 
 header {
+	display: flex;
+	flex-direction: column;
 	margin-top: 3%;
-	margin-bottom: 5%;
+	margin-bottom: 3%;
+	place-items: center;
 }
-header h1{
+header h1 {
 	font-size: 60px;
 	text-align: center;
 }
+
+#display-screen{
+	margin: 2% 0 2%;
+	font-size: 50px;
+}
+
 
 #board {
 	display: grid;
