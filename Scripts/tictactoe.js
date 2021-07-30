@@ -1,7 +1,7 @@
 const gameBoard = (() => {
     const _board = ["X", "X", "X","O", "O", "X","X", "X", "O"]
 
-    getBoard = () => {
+    const getBoard = () => {
         return _board;
     }
 
@@ -13,7 +13,7 @@ const gameBoard = (() => {
 
 function generateBoard() {
     // Takes in the board array, generates a div with the value in the square and appends it to the html board
-    board = gameBoard.getBoard();
+    let board = gameBoard.getBoard();
     board.forEach((square, index) => {
         let newSquare = document.createElement('div');
         newSquare.id = `square-${index}`;
@@ -26,3 +26,21 @@ function generateBoard() {
 }
 
 generateBoard();
+
+function cleanBoard() {
+    // Set all elements in the array to empty
+    board = gameBoard.getBoard();
+    board.fill("");
+    
+    // Deletes all children in board html
+    deleteBoardSquares();
+
+    generateBoard();
+}
+
+function deleteBoardSquares() {
+    let htmlBoard = document.querySelector("#board");
+    while (board.firstChild) {
+        board.removeChild(board.firstChild)
+    }
+}
