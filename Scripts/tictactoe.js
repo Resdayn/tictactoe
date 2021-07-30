@@ -31,8 +31,8 @@ const gameBoard = (() => {
 
     const deleteBoardSquares = () => {
         let htmlBoard = document.querySelector("#board");
-        while (board.firstChild) {
-            board.removeChild(board.firstChild)
+        while (htmlBoard.firstChild) {
+            htmlBoard.removeChild(htmlBoard.firstChild)
         }
     }
 
@@ -44,5 +44,8 @@ const gameBoard = (() => {
 
 })();
 
+// Generates the board on page load
+window.addEventListener('load', gameBoard.generateBoard);
 
-gameBoard.generateBoard();
+// Event Listener for the start button
+document.querySelector("#start-button").addEventListener('click', gameBoard.cleanBoard);
