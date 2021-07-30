@@ -1,8 +1,13 @@
 const gameBoard = (() => {
-    const _board = ["X", "X", "X","O", "O", "X","X", "X", "O"]
-
+    let _board = ["X", "X", "X","O", "O", "X","X", "X", "O"]
+    
     const getBoard = () => {
         return _board;
+    }
+
+    const getSquares = () => {
+        const _squares = document.querySelectorAll(".square");
+        return _squares;
     }
 
     const generateBoard = () => {
@@ -15,7 +20,14 @@ const gameBoard = (() => {
             
             let board = document.querySelector("#board");
             board.append(newSquare);
-        }); 
+        });
+
+        // Event Listener for ticking each square
+        gameBoard.getSquares().forEach((square, i) => {
+            square.addEventListener('click', () => {
+                gameBoard.markSquare(i);
+            })
+        });
     }
 
     const cleanBoard = () => {
@@ -36,16 +48,27 @@ const gameBoard = (() => {
         }
     }
 
+    const markSquare = (index) => {
+        if (gameBoard.getBoard()[index] === ""){
+            gameBoard.getBoard()[index] = 'X';
+        }
+
+        gameBoard.getSquares()[index].innerText = 'X';
+        gameBoard.getSquares()[index].style.color = 'blue';
+    }
+
     return {
         getBoard,
+        getSquares,
         generateBoard,
-        cleanBoard
+        cleanBoard,
+        markSquare
     }
 
 })();
 
 // Generates the board on page load
-window.addEventListener('load', gameBoard.generateBoard);
+gameBoard.generateBoard();
 
 // Event Listener for the start button
 document.querySelector("#start-button").addEventListener('click', gameBoard.cleanBoard);
