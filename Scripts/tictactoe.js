@@ -1,15 +1,25 @@
 const gameBoard = (() => {
-    let _board = ["X", "X", "X","O", "O", "X","X", "X", "O"]
+    let _board = ["", "", "","", "", "","", "", ""]
     
-    const getBoard = () => {
-        return _board;
-    }
+    let _currentUser = 'player1'
+
+    const getBoard = () => {return _board}
 
     const getSquares = () => {
         const _squares = document.querySelectorAll(".square");
         return _squares;
     }
 
+    const getCurrentUser = () => {return _currentUser}
+
+    let swapCurrentUser = () => {
+        if (_currentUser === 'player1'){
+            _currentUser = 'player2'
+        } else if (_currentUser === 'player2'){
+            _currentUser = 'player1'
+        }
+    }
+    
     const generateBoard = () => {
         let board = gameBoard.getBoard();
         board.forEach((square, index) => {
@@ -49,12 +59,22 @@ const gameBoard = (() => {
     }
 
     const markSquare = (index) => {
-        if (gameBoard.getBoard()[index] === ""){
-            gameBoard.getBoard()[index] = 'X';
+        if (gameBoard.getBoard()[index] !== ""){
+            return;
         }
 
-        gameBoard.getSquares()[index].innerText = 'X';
-        gameBoard.getSquares()[index].style.color = 'blue';
+        if (gameBoard.getCurrentUser() === 'player1'){
+            gameBoard.getBoard()[index] = 'X';
+            gameBoard.getSquares()[index].innerText = 'X';
+            gameBoard.getSquares()[index].style.color = 'blue';    
+        } else if (gameBoard.getCurrentUser() === 'player2') {
+            gameBoard.getBoard()[index] = 'O';
+            gameBoard.getSquares()[index].innerText = 'O';
+            gameBoard.getSquares()[index].style.color = 'red';
+        }
+
+        gameBoard.swapCurrentUser();
+        
     }
 
     return {
@@ -62,7 +82,10 @@ const gameBoard = (() => {
         getSquares,
         generateBoard,
         cleanBoard,
-        markSquare
+        markSquare,
+        getCurrentUser,
+        swapCurrentUser,
+        _currentUser
     }
 
 })();
