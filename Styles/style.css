@@ -88,3 +88,33 @@ header h1{
 #square-2, #square-5, #square-8{
 	border-left: solid 10px black;
 }
+
+#button-section{
+	display: flex;
+	justify-content: center;
+	margin-top: 3em;
+}
+
+#start-button{
+	background: #1EBA33;
+	font-family: Arial;
+	color: #FFFFFF;
+	font-size: 35px;
+	letter-spacing: 0em;
+	font-weight: 400;
+	padding: 7px 18px;
+	border: none;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 7px 7px 14px 2px #E0E0E0;
+	transform: translate(0px,0px) rotatex(0deg) rotatey(0deg) rotatez(0deg) skewX(0deg) skewY(0deg) scaleX(1) scaleY(1);
+	transition: all 0.1s linear 0s;
+	}
+
+#start-button:hover{
+background: #1DC236;
+font-size: 20px;
+border-radius: 3px 3px 3px 3px;
+box-shadow: 0px 6px 6px 0px #E8E8E8;
+transform: translate(0px,3px) rotatex(0deg) rotatey(0deg) rotatez(0deg) skewX(0deg) skewY(0deg) scaleX(1) scaleY(1);
+transition: all 0.1s linear 0s;
+}
