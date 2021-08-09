@@ -40,6 +40,14 @@ const gameBoard = (() => {
         gameBoard.getSquares().forEach((square, i) => {
             square.addEventListener('click', () => {
                 gameBoard.markSquare(i);
+                if (gameBoard.checkWinner(gameBoard.getMark()) === true){
+                    console.log(`Winner is ${gameBoard.getMark()}`)
+                    gameBoard.displayWinner();
+                    gameBoard.stopGame();
+                    return;
+                }
+                gameBoard.swapCurrentUser();
+
             })
         });
     }
@@ -76,8 +84,6 @@ const gameBoard = (() => {
             gameBoard.getSquares()[index].innerText = 'O';
             gameBoard.getSquares()[index].style.color = 'red';
         }
-
-        gameBoard.swapCurrentUser();
         
     }
 
@@ -91,24 +97,23 @@ const gameBoard = (() => {
 
     const checkWinner = (mark) => {
         // Returns true if any of the combinations is matched for the selected mark
+        console.log(`Checking for ${mark}`);
 
-        if (gameBoard.getCurrentUser() === 'player1'){
-            mark = 'X'
-        } else {mark = 'O'}
-
-        if (board.getBoard()[0] === mark && board.getBoard()[1] === mark && board.getBoard()[2] === mark ||
-        board.getBoard()[3] === mark && board.getBoard()[4] === mark && board.getBoard()[5] === mark ||
-        board.getBoard()[6] === mark && board.getBoard()[7] === mark && board.getBoard()[8] === mark ||
-        board.getBoard()[0] === mark && board.getBoard()[3] === mark && board.getBoard()[6] === mark ||
-        board.getBoard()[1] === mark && board.getBoard()[4] === mark && board.getBoard()[7] === mark ||
-        board.getBoard()[2] === mark && board.getBoard()[5] === mark && board.getBoard()[8] === mark ||
-        board.getBoard()[0] === mark && board.getBoard()[4] === mark && board.getBoard()[8] === mark ||
-        board.getBoard()[2] === mark && board.getBoard()[4] === mark && board.getBoard()[6] === mark){
+        if (gameBoard.getBoard()[0] === mark && gameBoard.getBoard()[1] === mark && gameBoard.getBoard()[2] === mark ||
+        gameBoard.getBoard()[3] === mark && gameBoard.getBoard()[4] === mark && gameBoard.getBoard()[5] === mark ||
+        gameBoard.getBoard()[6] === mark && gameBoard.getBoard()[7] === mark && gameBoard.getBoard()[8] === mark ||
+        gameBoard.getBoard()[0] === mark && gameBoard.getBoard()[3] === mark && gameBoard.getBoard()[6] === mark ||
+        gameBoard.getBoard()[1] === mark && gameBoard.getBoard()[4] === mark && gameBoard.getBoard()[7] === mark ||
+        gameBoard.getBoard()[2] === mark && gameBoard.getBoard()[5] === mark && gameBoard.getBoard()[8] === mark ||
+        gameBoard.getBoard()[0] === mark && gameBoard.getBoard()[4] === mark && gameBoard.getBoard()[8] === mark ||
+        gameBoard.getBoard()[2] === mark && gameBoard.getBoard()[4] === mark && gameBoard.getBoard()[6] === mark){
             return true
         }
     }
 
     const displayWinner = (player) => {
+        // TODO: This is not properly displaying the winner. In the called function in the event lister, add the current player as the argument.
+        console.log("displayWinner Invoked")
         let displayScreen = document.querySelector("#display-screen");
         if (player === 'player1'){
             displayScreen.innerText = 'Player 1 Wins!';
