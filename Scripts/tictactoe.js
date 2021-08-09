@@ -108,6 +108,23 @@ const gameBoard = (() => {
         }
     }
 
+    const displayWinner = (player) => {
+        let displayScreen = document.querySelector("#display-screen");
+        if (player === 'player1'){
+            displayScreen.innerText = 'Player 1 Wins!';
+        } else if (player === 'player2') {
+            displayScreen.innerText = 'Player 2 Wins!';
+        } 
+    }
+
+    const stopGame = () => {
+        gameBoard.getSquares().forEach((square) => {
+            square.removeEventListener('click', () => {
+                gameBoard.markSquare(i);
+            })
+        });
+    }
+
     return {
         getBoard,
         getSquares,
@@ -117,7 +134,9 @@ const gameBoard = (() => {
         getCurrentUser,
         swapCurrentUser,
         getMark,
-        checkWinner
+        checkWinner,
+        displayWinner,
+        stopGame
     }
 
 })();
