@@ -81,6 +81,14 @@ const gameBoard = (() => {
         
     }
 
+    const getMark = () => {
+        if (_currentUser === 'player1') {
+            return 'X';
+        } else if (_currentUser ==='player2'){
+            return 'O';
+        }
+    }
+
     const checkWinner = (mark) => {
         // Returns true if any of the combinations is matched for the selected mark
 
@@ -108,6 +116,7 @@ const gameBoard = (() => {
         markSquare,
         getCurrentUser,
         swapCurrentUser,
+        getMark,
         checkWinner
     }
 
