@@ -126,6 +126,7 @@ const gameBoard = (() => {
                 gameBoard.stopGame();
                 return;
             }
+            // TODO: Fix this so that clicking on an already filled square doesn't swap the player
             gameBoard.swapCurrentUser();
         })
     });
