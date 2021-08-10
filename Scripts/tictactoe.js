@@ -35,22 +35,6 @@ const gameBoard = (() => {
             let board = document.querySelector("#board");
             board.append(newSquare);
         });
-
-        // Event Listener for ticking each square
-        gameBoard.getSquares().forEach((square, i) => {
-            square.addEventListener('click', () => {
-                // TODO: Substitute the below code for a function so the event listener can be removed later. Call it 'playRound'
-                gameBoard.markSquare(i);
-                if (gameBoard.checkWinner(gameBoard.getMark()) === true){
-                    console.log(`Winner is ${gameBoard.getMark()}`)
-                    gameBoard.displayWinner(gameBoard.getCurrentUser());
-                    gameBoard.stopGame();
-                    return;
-                }
-                gameBoard.swapCurrentUser();
-
-            })
-        });
     }
 
     const cleanBoard = () => {
@@ -124,8 +108,10 @@ const gameBoard = (() => {
 
     const stopGame = () => {
         console.log("stopGame invoked")
-        gameBoard.getSquares().forEach((square, i) => {
-            square.removeEventListener('click', playRound);
+        gameBoard.getSquares().forEach((square) => {
+            square.removeEventListener('click', () => {
+                alert("game has finished!")
+            });
         });
     }
 
@@ -150,3 +136,19 @@ gameBoard.generateBoard();
 
 // Event Listener for the start button
 document.querySelector("#start-button").addEventListener('click', gameBoard.cleanBoard);
+
+// Event Listener for ticking each square
+gameBoard.getSquares().forEach((square, i) => {
+    square.addEventListener('click', () => {
+        // TODO: Substitute the below code for a function so the event listener can be removed later. Call it 'playRound'
+        gameBoard.markSquare(i);
+        if (gameBoard.checkWinner(gameBoard.getMark()) === true){
+            console.log(`Winner is ${gameBoard.getMark()}`)
+            gameBoard.displayWinner(gameBoard.getCurrentUser());
+            gameBoard.stopGame();
+            return;
+        }
+        gameBoard.swapCurrentUser();
+
+    })
+});
