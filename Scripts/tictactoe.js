@@ -39,10 +39,11 @@ const gameBoard = (() => {
         // Event Listener for ticking each square
         gameBoard.getSquares().forEach((square, i) => {
             square.addEventListener('click', () => {
+                // TODO: Substitute the below code for a function so the event listener can be removed later. Call it 'playRound'
                 gameBoard.markSquare(i);
                 if (gameBoard.checkWinner(gameBoard.getMark()) === true){
                     console.log(`Winner is ${gameBoard.getMark()}`)
-                    gameBoard.displayWinner();
+                    gameBoard.displayWinner(gameBoard.getCurrentUser());
                     gameBoard.stopGame();
                     return;
                 }
@@ -112,7 +113,6 @@ const gameBoard = (() => {
     }
 
     const displayWinner = (player) => {
-        // TODO: This is not properly displaying the winner. In the called function in the event lister, add the current player as the argument.
         console.log("displayWinner Invoked")
         let displayScreen = document.querySelector("#display-screen");
         if (player === 'player1'){
@@ -123,10 +123,9 @@ const gameBoard = (() => {
     }
 
     const stopGame = () => {
-        gameBoard.getSquares().forEach((square) => {
-            square.removeEventListener('click', () => {
-                gameBoard.markSquare(i);
-            })
+        console.log("stopGame invoked")
+        gameBoard.getSquares().forEach((square, i) => {
+            square.removeEventListener('click', playRound);
         });
     }
 
