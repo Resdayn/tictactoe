@@ -127,6 +127,10 @@ const gameBoard = (() => {
         // Event Listener for ticking each square
         gameBoard.getSquares().forEach((square, i) => {
         square.addEventListener('click', () => {
+            if (gameBoard.getBoard()[i] !== ""){
+                return
+            }
+
             gameBoard.markSquare(i);
             if (gameBoard.checkWinner(gameBoard.getMark()) === true){
                 console.log(`Winner is ${gameBoard.getMark()}`)
@@ -138,7 +142,6 @@ const gameBoard = (() => {
                 gameBoard.displayDraw();
                 return
             }
-            // TODO: Fix this so that clicking on an already filled square doesn't swap the player
             gameBoard.swapCurrentUser();
         })
     });
