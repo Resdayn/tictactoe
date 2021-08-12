@@ -35,6 +35,8 @@ const gameBoard = (() => {
             let board = document.querySelector("#board");
             board.append(newSquare);
         });
+        let displayScreen = document.querySelector("#display-screen");
+        displayScreen.innerText = 'Player 1 plays now!'
 
         gameBoard.attachListeners();
     }
@@ -95,7 +97,7 @@ const gameBoard = (() => {
         gameBoard.getBoard()[0] === mark && gameBoard.getBoard()[4] === mark && gameBoard.getBoard()[8] === mark ||
         gameBoard.getBoard()[2] === mark && gameBoard.getBoard()[4] === mark && gameBoard.getBoard()[6] === mark){
             return true
-        }
+        } 
     }
 
     const displayWinner = (player) => {
@@ -106,6 +108,12 @@ const gameBoard = (() => {
         } else if (player === 'player2') {
             displayScreen.innerText = 'Player 2 Wins!';
         } 
+    }
+
+    const displayDraw = () => {
+        console.log("displayDraw Invoked")
+        let displayScreen = document.querySelector("#display-screen");
+        displayScreen.innerText = "It's a Draw!"
     }
 
     const stopGame = () => {
@@ -125,6 +133,10 @@ const gameBoard = (() => {
                 gameBoard.displayWinner(gameBoard.getCurrentUser());
                 gameBoard.stopGame();
                 return;
+            }else if (gameBoard.getBoard().includes("") === false){
+                // check if all the squares are ocuppied but didn't trigger a winner. This is to declare a draw
+                gameBoard.displayDraw();
+                return
             }
             // TODO: Fix this so that clicking on an already filled square doesn't swap the player
             gameBoard.swapCurrentUser();
@@ -143,6 +155,7 @@ const gameBoard = (() => {
         getMark,
         checkWinner,
         displayWinner,
+        displayDraw,
         stopGame,
         attachListeners
     }
