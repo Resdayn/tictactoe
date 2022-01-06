@@ -7,3 +7,5 @@
 * Uses a factory function wrapped in a module
 * It switches the player on each turn
 * It checks who won the round or if there is a draw.
+
+<a href="https://resdayn.github.io/tictactoe/">Live Demo</a>
